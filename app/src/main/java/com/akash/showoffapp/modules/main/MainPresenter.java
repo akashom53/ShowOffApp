@@ -54,7 +54,7 @@ public class MainPresenter extends BasePresenter<IMainView> {
 
                     @Override
                     public void onNext(Object o) {
-                        getView().showToast("Module in progress");
+                        getView().openModule(IMainView.Module.Snackbar);
                     }
 
                     @Override

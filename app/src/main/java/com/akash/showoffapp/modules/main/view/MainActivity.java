@@ -11,6 +11,8 @@ import com.akash.showoffapp.R;
 import com.akash.showoffapp.ShowOffApp;
 import com.akash.showoffapp.base.BaseActivity;
 import com.akash.showoffapp.modules.main.MainPresenter;
+import com.akash.showoffapp.modules.snackbar.SnackbarPresenter;
+import com.akash.showoffapp.modules.snackbar.view.SnackbarActivity;
 import com.akash.showoffapp.modules.toasts.view.ToastActivity;
 import com.jakewharton.rxbinding2.view.RxView;
 
@@ -61,6 +63,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMainVi
                 activityClass = ToastActivity.class;
                 break;
             case Snackbar:
+                activityClass = SnackbarActivity.class;
                 break;
         }
 

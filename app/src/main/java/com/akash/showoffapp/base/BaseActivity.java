@@ -2,7 +2,11 @@ package com.akash.showoffapp.base;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
+
+import com.akash.androidcore.snackbars.SnackbarLibrary;
+import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,11 +15,12 @@ import androidx.lifecycle.ViewModelProviders;
 public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity {
     protected T presenter;
     private ProgressDialog progressDialog;
+    protected View rootView;
 
     @Override
     protected final void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getContentView());
+        initRootView();
         findViews();
         this.presenter = ViewModelProviders.of(this).get(getPresenterClass());
         onViewReady();
@@ -24,6 +29,11 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         } else {
             this.presenter.bind((BaseView) this);
         }
+    }
+
+    private void initRootView() {
+        rootView = getLayoutInflater().inflate(getContentView(), null);
+        setContentView(rootView);
     }
 
     protected abstract Class<T> getPresenterClass();
@@ -54,4 +64,5 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
             progressDialog.hide();
         }
     }
+
 }

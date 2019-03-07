@@ -45,7 +45,7 @@ public class ToastActivity extends BaseActivity<ToastPresenter> implements IToas
     @Override
     public Observable<Object> getSimpleToastButtonObservable() {
         return RxView.clicks(simpleToastButton)
-                .debounce(100, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread());
+                .throttleFirst(2, TimeUnit.SECONDS, AndroidSchedulers.mainThread());
     }
 
     @Override
@@ -56,7 +56,7 @@ public class ToastActivity extends BaseActivity<ToastPresenter> implements IToas
     @Override
     public Observable<Object> getCustomToastButtonObservable() {
         return RxView.clicks(customToastButton)
-                .debounce(100, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread());
+                .throttleFirst(2, TimeUnit.SECONDS, AndroidSchedulers.mainThread());
     }
 
     @Override
