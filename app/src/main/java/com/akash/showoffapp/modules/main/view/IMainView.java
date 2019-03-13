@@ -8,10 +8,12 @@ public interface IMainView extends BaseView {
 
     enum Module {
         Toast,
-        Snackbar
+        Snackbar,
+        Notification
     }
 
     Observable<Object> getToastButtonObservable();
     Observable<Object> getSnackbarButtonObservable();
+    Observable<Object> getNotificationButtonObservable();
     void openModule(Module module);
 }

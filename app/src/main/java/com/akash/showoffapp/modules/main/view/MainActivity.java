@@ -11,6 +11,7 @@ import com.akash.showoffapp.R;
 import com.akash.showoffapp.ShowOffApp;
 import com.akash.showoffapp.base.BaseActivity;
 import com.akash.showoffapp.modules.main.MainPresenter;
+import com.akash.showoffapp.modules.notifications.view.NotificationsActivity;
 import com.akash.showoffapp.modules.snackbar.SnackbarPresenter;
 import com.akash.showoffapp.modules.snackbar.view.SnackbarActivity;
 import com.akash.showoffapp.modules.toasts.view.ToastActivity;
@@ -21,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 public class MainActivity extends BaseActivity<MainPresenter> implements IMainView {
     private Button toastButton;
     private Button snackbarButton;
+    private Button notificationButton;
 
     @Override
     protected Class<MainPresenter> getPresenterClass() {
@@ -36,6 +38,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMainVi
     protected void findViews() {
         toastButton = findViewById(R.id.btn_toast);
         snackbarButton = findViewById(R.id.btn_snackbar);
+        notificationButton = findViewById(R.id.btn_notification);
     }
 
     @Override
@@ -56,6 +59,12 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMainVi
     }
 
     @Override
+    public Observable<Object> getNotificationButtonObservable() {
+        return RxView.clicks(notificationButton)
+                .debounce(100, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread());
+    }
+
+    @Override
     public void openModule(Module module) {
         Class<? extends AppCompatActivity> activityClass = null;
         switch (module) {
@@ -64,6 +73,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMainVi
                 break;
             case Snackbar:
                 activityClass = SnackbarActivity.class;
+                break;
+            case Notification:
+                activityClass = NotificationsActivity.class;
                 break;
         }
 

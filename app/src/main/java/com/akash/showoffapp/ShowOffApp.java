@@ -6,6 +6,11 @@ import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+//TODO: Localization
+//TODO: UI & UX
+//TODO: Services (Youtube player, background support)
+//TODO: Broadcast Receivers
+
 public class ShowOffApp extends Application {
 
     public static <T extends AppCompatActivity> void launch(Context context, Class<T> activityClass) {

@@ -17,6 +17,7 @@ public class MainPresenter extends BasePresenter<IMainView> {
     protected void createViewSubscriptions() {
         createToastButtonSubscription();
         createSnackbarButtonSubscription();
+        createNotificationsButtonSubscription();
     }
 
     private void createToastButtonSubscription() {
@@ -55,6 +56,31 @@ public class MainPresenter extends BasePresenter<IMainView> {
                     @Override
                     public void onNext(Object o) {
                         getView().openModule(IMainView.Module.Snackbar);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    private void createNotificationsButtonSubscription() {
+        getView().getNotificationButtonObservable()
+                .subscribe(new Observer<Object>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        disposables.add(d);
+                    }
+
+                    @Override
+                    public void onNext(Object o) {
+                        getView().openModule(IMainView.Module.Notification);
                     }
 
                     @Override

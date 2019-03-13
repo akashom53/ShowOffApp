@@ -20,6 +20,7 @@
         <activity android:name=".modules.main.view.MainActivity"></activity>
         <activity android:name=".modules.toasts.view.ToastActivity" />
         <activity android:name=".modules.snackbar.view.SnackbarActivity" />
+        <activity android:name=".modules.notifications.view.NotificationsActivity" />
     </application>
 
 </manifest>
