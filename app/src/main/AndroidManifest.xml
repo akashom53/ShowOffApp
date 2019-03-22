@@ -21,6 +21,7 @@
         <activity android:name=".modules.toasts.view.ToastActivity" />
         <activity android:name=".modules.snackbar.view.SnackbarActivity" />
         <activity android:name=".modules.notifications.view.NotificationsActivity" />
+        <activity android:name=".modules.jobs.view.JobsActivity" />
     </application>
 
 </manifest>

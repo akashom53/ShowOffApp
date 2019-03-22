@@ -34,6 +34,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
     protected abstract Class<T> getPresenterClass();
 
+
     protected abstract void onViewReady();
 
     protected abstract void findViews();

@@ -28,7 +28,7 @@ public class ToastActivity extends BaseActivity<ToastPresenter> implements IToas
 
     @Override
     protected void onViewReady() {
-
+        setTitle("Toasts");
     }
 
     @Override

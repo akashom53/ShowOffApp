@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 //TODO: UI & UX
 //TODO: Services (Youtube player, background support)
 //TODO: Broadcast Receivers
+//TODO: More options in Notifications Library
 
 public class ShowOffApp extends Application {
 

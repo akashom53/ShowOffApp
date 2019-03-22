@@ -30,7 +30,7 @@ public class SnackbarActivity extends BaseActivity<SnackbarPresenter> implements
 
     @Override
     protected void onViewReady() {
-
+        setTitle("Snackbars");
     }
 
     @Override

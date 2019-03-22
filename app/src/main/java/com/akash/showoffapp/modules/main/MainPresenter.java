@@ -18,6 +18,32 @@ public class MainPresenter extends BasePresenter<IMainView> {
         createToastButtonSubscription();
         createSnackbarButtonSubscription();
         createNotificationsButtonSubscription();
+        createJobsButtonSubscription();
+    }
+
+    private void createJobsButtonSubscription() {
+        getView().getJobsButtonObservable()
+                .subscribe(new Observer<Object>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        disposables.add(d);
+                    }
+
+                    @Override
+                    public void onNext(Object o) {
+                        getView().openModule(IMainView.Module.JobScheduler);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     private void createToastButtonSubscription() {

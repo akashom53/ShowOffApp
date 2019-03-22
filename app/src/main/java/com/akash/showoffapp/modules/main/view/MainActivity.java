@@ -5,11 +5,15 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.akash.showoffapp.R;
 import com.akash.showoffapp.ShowOffApp;
 import com.akash.showoffapp.base.BaseActivity;
+import com.akash.showoffapp.modules.jobs.view.JobsActivity;
 import com.akash.showoffapp.modules.main.MainPresenter;
 import com.akash.showoffapp.modules.notifications.view.NotificationsActivity;
 import com.akash.showoffapp.modules.snackbar.SnackbarPresenter;
@@ -23,6 +27,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMainVi
     private Button toastButton;
     private Button snackbarButton;
     private Button notificationButton;
+    private Button jobButton;
 
     @Override
     protected Class<MainPresenter> getPresenterClass() {
@@ -39,6 +44,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMainVi
         toastButton = findViewById(R.id.btn_toast);
         snackbarButton = findViewById(R.id.btn_snackbar);
         notificationButton = findViewById(R.id.btn_notification);
+        jobButton = findViewById(R.id.btn_job_scheduler);
     }
 
     @Override
@@ -65,6 +71,12 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMainVi
     }
 
     @Override
+    public Observable<Object> getJobsButtonObservable() {
+        return RxView.clicks(jobButton)
+                .debounce(100, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread());
+    }
+
+    @Override
     public void openModule(Module module) {
         Class<? extends AppCompatActivity> activityClass = null;
         switch (module) {
@@ -76,6 +88,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMainVi
                 break;
             case Notification:
                 activityClass = NotificationsActivity.class;
+                break;
+            case JobScheduler:
+                activityClass = JobsActivity.class;
                 break;
         }
 
